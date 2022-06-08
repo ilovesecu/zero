@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>끝말잇기</title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div>
+    <span id="order">1번째 참가자</span>
+  </div>
+  <div>제시어:
+    <span id="word"></span>
+  </div>
+  <input type="text">
+  <button>입력</button>
+  <script>
+    let word; //제시어
+    let newWord; //새로 입력한 단어
+    const number = parseInt(prompt('몇 명이 참가하나요?'),10); //10진법
+    //콜백 : 어떤 동작 후에 연이어서 실행되는 함수
+    const $button = document.querySelector("button");
+    const $input = document.querySelector("input");
+    const $word = document.querySelector("#word");
+    const onClickButton = () => {
+        if(!word){ //제시어 비어있음
+          word = newWord;
+          $word.textContent = word;
+          $input.value = '';
+        }else{ //제시어 비어있지 않음.
+
+        }
+    };
+    const onInput = (event) => { // ※그냥 입력버튼 눌렀을 때만 newWord에 저장하면 안되나?
+      newWord = event.target.value;
+    };
+    $button.addEventListener('click',onClickButton);
+    $input.addEventListener('input',onInput);
+
+
+  </script>
+</body>
+
+</html>

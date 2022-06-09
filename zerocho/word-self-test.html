@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>쿵쿵따 게임</title>
+  </head>
+  <body>
+    <div>
+      <span id="order">1번째 참가자</span>
+    </div>
+    <div>
+      제시어:
+      <span id="word"></span>
+    </div>
+    <input type="text" />
+    <button>입력</button>
+
+    <script>
+      const number = parseInt(prompt('몇명이 참가하나요?'), 10);
+
+      console.log(typeof number);
+      if (!isNaN(number)) {
+        alert('시작');
+
+        let word = ''; //제시어
+
+        const $button = document.querySelector('button');
+        const $input = document.querySelector('input');
+        const $word = document.querySelector('#word');
+        const $order = document.querySelector('#order');
+
+        const clickHander = () => {
+          const val = $input.value;
+          //세글자 체크
+          if (val.length !== 3) {
+            alert('쿵쿵따는 세글자를 입력하셔야합니다.');
+            $input.value = '';
+            $input.focus();
+            return;
+          }
+          if (word === '' || val[0] === word[2]) {
+            //올바름
+            word = val;
+            $word.textContent = word;
+            const order = parseInt($order.textContent[0]);
+            if (order === number) {
+              $order.textContent = `1번째 참가자`;
+            } else {
+              $order.textContent = `${order + 1}번째 참가자`;
+            }
+          } else {
+            //올바르지 않음.
+            alert('올바르지 않습니다.');
+          }
+          $input.value = '';
+          $input.focus();
+        };
+        //입력버튼 클릭
+        $button.addEventListener('click', clickHander);
+        //엔터키
+        $input.addEventListener('keyup', () => {
+          if (window.event.keyCode == 13) clickHander();
+        });
+      }
+    </script>
+  </body>
+</html>
